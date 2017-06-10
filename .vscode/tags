@@ -1,0 +1,58 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALLOWED_HOSTS	../mashup/settings.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:28
+AUTH_PASSWORD_VALIDATORS	../mashup/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:90
+AboutTemplateView	../website/views.py	/^class AboutTemplateView(TemplateView):$/;"	kind:class	line:8
+BASE_DIR	../mashup/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	kind:variable	line:16
+DATABASES	../mashup/settings.py	/^DATABASES = {$/;"	kind:variable	line:79
+DEBUG	../mashup/settings.py	/^DEBUG = True$/;"	kind:variable	line:26
+HomeTemplateView	../website/views.py	/^class HomeTemplateView(TemplateView):$/;"	kind:class	line:4
+INSTALLED_APPS	../mashup/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:33
+LANGUAGE_CODE	../mashup/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	kind:variable	line:109
+MIDDLEWARE	../mashup/settings.py	/^MIDDLEWARE = [$/;"	kind:variable	line:45
+ROOT_URLCONF	../mashup/settings.py	/^ROOT_URLCONF = 'mashup.urls'$/;"	kind:variable	line:55
+STATIC_URL	../mashup/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:123
+TEMPLATES	../mashup/settings.py	/^TEMPLATES = [$/;"	kind:variable	line:57
+TIME_ZONE	../mashup/settings.py	/^TIME_ZONE = 'UTC'$/;"	kind:variable	line:111
+USE_I18N	../mashup/settings.py	/^USE_I18N = True$/;"	kind:variable	line:113
+USE_L10N	../mashup/settings.py	/^USE_L10N = True$/;"	kind:variable	line:115
+USE_TZ	../mashup/settings.py	/^USE_TZ = True$/;"	kind:variable	line:117
+UsersConfig	../users/apps.py	/^class UsersConfig(AppConfig):$/;"	kind:class	line:4
+WSGI_APPLICATION	../mashup/settings.py	/^WSGI_APPLICATION = 'mashup.wsgi.application'$/;"	kind:variable	line:73
+WebsiteConfig	../website/apps.py	/^class WebsiteConfig(AppConfig):$/;"	kind:class	line:4
+__init__.py	../mashup/__init__.py	1;"	kind:file	line:1
+__init__.py	../users/__init__.py	1;"	kind:file	line:1
+__init__.py	../users/migrations/__init__.py	1;"	kind:file	line:1
+__init__.py	../website/__init__.py	1;"	kind:file	line:1
+__init__.py	../website/migrations/__init__.py	1;"	kind:file	line:1
+admin.py	../users/admin.py	1;"	kind:file	line:1
+admin.py	../website/admin.py	1;"	kind:file	line:1
+app_name	../users/urls.py	/^app_name = 'users'$/;"	kind:variable	line:6
+app_name	../website/urls.py	/^app_name = 'website'$/;"	kind:variable	line:6
+application	../mashup/wsgi.py	/^application = get_wsgi_application()$/;"	kind:variable	line:16
+apps.py	../users/apps.py	1;"	kind:file	line:1
+apps.py	../website/apps.py	1;"	kind:file	line:1
+manage.py	../manage.py	1;"	kind:file	line:1
+models.py	../users/models.py	1;"	kind:file	line:1
+models.py	../website/models.py	1;"	kind:file	line:1
+name	../users/apps.py	/^    name = 'users'$/;"	kind:variable	line:5
+name	../website/apps.py	/^    name = 'website'$/;"	kind:variable	line:5
+settings.py	../mashup/settings.py	1;"	kind:file	line:1
+signup	../users/views.py	/^def signup(request):$/;"	kind:function	line:6
+template_name	../website/views.py	/^    template_name = 'website\/about.html'/;"	kind:variable	line:9
+template_name	../website/views.py	/^    template_name = 'website\/home.html'$/;"	kind:variable	line:5
+tests.py	../users/tests.py	1;"	kind:file	line:1
+tests.py	../website/tests.py	1;"	kind:file	line:1
+urlpatterns	../mashup/urls.py	/^urlpatterns = [$/;"	kind:variable	line:20
+urlpatterns	../users/urls.py	/^urlpatterns = [$/;"	kind:variable	line:8
+urlpatterns	../website/urls.py	/^urlpatterns = [$/;"	kind:variable	line:8
+urls.py	../mashup/urls.py	1;"	kind:file	line:1
+urls.py	../users/urls.py	1;"	kind:file	line:1
+urls.py	../website/urls.py	1;"	kind:file	line:1
+views.py	../users/views.py	1;"	kind:file	line:1
+views.py	../website/views.py	1;"	kind:file	line:1
+wsgi.py	../mashup/wsgi.py	1;"	kind:file	line:1

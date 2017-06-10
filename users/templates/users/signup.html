@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Register now</h2>
+    <div class="row">
+        <form action="{% url 'users:signup' %}" method="post" class="col s6">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">info_outline</i>
+                    {{ form.username }}
+                    <label for="{{ form.username.id }}">{{ form.username.label }}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    {{ form.first_name }}
+                    <label for="{{ form.first_name.id }}">{{ form.first_name.label }}</label>
+                </div>
+                <div class="input-field col s6">
+                    {{ form.last_name }}
+                    <label for="{{ form.last_name.id }}">{{ form.last_name.label }}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    {{ form.email }}
+                    <label for="{{ form.email.id }}">{{ form.email.label }}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">lock_outline</i>
+                    {{ form.password1 }}
+                    <label for="{{ form.password1.id }}">{{ form.password1.label }}</label>
+                </div>
+                <div class="input-field col s6">
+                    {{ form.password2 }}
+                    <label for="{{ form.password2.id }}">{{ form.password2.label }}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Register" class="btn-large">
+            </div>
+            
+            {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}

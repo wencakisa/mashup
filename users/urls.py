@@ -1,14 +1,13 @@
 from django.conf.urls import url
-from django.contrib.auth.views import login, logout
+from django.contrib.auth import views as auth_views
 
-from .views import signup
+from .views import SignUpView, ProfileView
 from .forms import LogInForm
 
 
-app_name = 'users'
-
 urlpatterns = [
-    url(r'^signup/', signup, name='signup'),
-    url(r'^login/', login, {'template_name': 'users/login.html', 'authentication_form': LogInForm}, name='login'),
-    url(r'^logout/', logout, {'next_page': '/'}, name='logout')
+    url(r'^signup/$', SignUpView.as_view(), name='signup'),
+    url(r'^login/$', auth_views.login, {'template_name': 'users/login.html', 'authentication_form': LogInForm}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^profile/(?P<pk>\d+)/$', ProfileView.as_view(), name='profile')
 ]

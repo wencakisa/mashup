@@ -1,11 +1,14 @@
 <html>
     <head>
+        {% load static %}
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Mashup</title>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+        <link rel="stylesheet" href="{% static '/bower_components/Materialize/dist/css/materialize.min.css' %}">
+        <link rel="stylesheet" href="{% static '/bower_components/materialize-clockpicker/dist/css/materialize.clockpicker.css' %}">
     </head>
     <body>
         <nav>
@@ -14,7 +17,8 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'website:about' %}">About us</a></li>
-                    <li><a href="#">{{ request.user.username }}</a></li>
+                    <li><a href="{% url 'events:event-list' %}">Events</a>></li>
+                    <li><a href="{% url 'users:profile' request.user.id %}">{{ request.user.username }}</a></li>
                     <li><a href="{% url 'users:logout' %}">Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'users:login' %}">Login</a></li>
@@ -28,7 +32,22 @@
         
         {% endblock %}
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+        {% if request.user.is_authenticated %}
+            <footer class="footer">
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large waves-effect waves-light red" href="{% url 'events:event-create' %}">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+            </footer>
+        {% endif %}
+
+        <script type="text/javascript" src="{% static '/bower_components/jquery/dist/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static '/bower_components/Materialize/dist/js/materialize.min.js' %}"></script>
+        <script type="text/javascript" src="{% static '/bower_components/materialize-clockpicker/dist/js/materialize.clockpicker.js' %}"></script>
+
+        {% block javascript %}
+
+        {% endblock %}
     </body>
 </html>

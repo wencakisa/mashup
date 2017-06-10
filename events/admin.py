@@ -1,0 +1,9 @@
+from django.contrib import admin
+
+from .models import Event
+
+
+class EventAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'host']
+
+admin.site.register(Event, EventAdmin)

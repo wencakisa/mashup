@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row">
+        <form action="{% url 'events:event-create' %}" method="post" class="col s6" enctype="multipart/form-data">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">grade</i>
+                    {{ form.title }}
+                    <label for="{{ form.title.id }}">{{ form.title.label }}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <textarea id="description" class="materialize-textarea"></textarea>
+                    <label for="{{ form.description.id }}">{{ form.description.label }}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">today</i>
+                        <input type="date" class="datepicker" name="from_date">
+                        <label for="from_date">From date</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">alarm_on</i>
+                        <input type="text" class="timepicker" name="from_time" id="from_time">
+                        <label for="from_time">From time</label>
+                    </div>
+                </div>
+
+                <div class="col s12">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">today</i>
+                        <input type="date" class="datepicker" name="to_date">
+                        <label for="to_date">To date</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">alarm_on</i>
+                        <input type="text" class="timepicker" name="to_time" id="to_time">
+                        <label for="to_time">To time</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="file-field input-field">
+                    <input type="file" name="photo">
+                    <label for="photo">Event photo</label>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Create event" class="btn-large">
+            </div>
+            
+            {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $('.datepicker').pickadate({
+            selectMonths: true,
+            selectYears: 1,
+            min: new Date(),
+        });
+
+        $('.timepicker').pickatime({
+            autoclose: true,
+            twelvehour: true,
+            default: '12:00:00'
+        });
+    </script>
+{% endblock %}

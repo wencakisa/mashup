@@ -4,6 +4,9 @@ TODO
 # Django default DB file
 *.sqlite3
 
+# Bower components
+bower_components/
+
 # Visual Studio Code settings file
 settings.json
 

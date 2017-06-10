@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if object_list %}
+        <ul class="collection">
+            {% for event in object_list %}
+                <li class="collection-item avatar">
+                    <img src="/{{ event.photo.url }}" alt="Event photo" class="circle">
+                    <span class="title"><a href="{% url 'events:event-detail' event.id %}">{{ event.title }}</a></span>
+                    <p>Hosted by <strong>{{ event.host }}</strong></p>
+                    <p>{{ event.description|truncatechars:100 }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>There are no events yet...</h3>
+    {% endif %}
+{% endblock %}

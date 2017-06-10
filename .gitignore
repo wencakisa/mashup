@@ -5,7 +5,7 @@ TODO
 *.sqlite3
 
 # Bower components
-bower_components/
+static/
 
 # Visual Studio Code settings file
 settings.json

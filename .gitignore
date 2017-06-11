@@ -8,7 +8,7 @@ TODO
 static/
 
 # Visual Studio Code settings file
-settings.json
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

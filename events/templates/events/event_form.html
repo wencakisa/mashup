@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="row">
-        <form action="{% url 'events:event-create' %}" method="post" class="col s6" enctype="multipart/form-data">
+        <form action="{% url 'events:event-create' %}" method="post" class="col s8 offset-s2 center-align" enctype="multipart/form-data">
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">grade</i>
@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="description" class="materialize-textarea"></textarea>
+                    <textarea id="description" class="materialize-textarea" name="description"></textarea>
                     <label for="{{ form.description.id }}">{{ form.description.label }}</label>
                 </div>
             </div>
@@ -23,36 +23,51 @@
                 <div class="col s12">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">today</i>
-                        <input type="date" class="datepicker" name="from_date">
+                        <input type="date" class="datepicker" name="from_date" id="from_date" required>
                         <label for="from_date">From date</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">alarm_on</i>
-                        <input type="text" class="timepicker" name="from_time" id="from_time">
+                        <input type="text" class="timepicker" name="from_time" id="from_time" required>
                         <label for="from_time">From time</label>
                     </div>
                 </div>
-
+            </div>
+            
+            <div class="row">
                 <div class="col s12">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">today</i>
-                        <input type="date" class="datepicker" name="to_date">
+                        <input type="date" class="datepicker" name="to_date" id="to_date" required>
                         <label for="to_date">To date</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">alarm_on</i>
-                        <input type="text" class="timepicker" name="to_time" id="to_time">
+                        <input type="text" class="timepicker" name="to_time" id="to_time" required>
                         <label for="to_time">To time</label>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="file-field input-field">
-                    <input type="file" name="photo">
-                    <label for="photo">Event photo</label>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                <div class="col s12">
+                    <div class="input-field col s12">
+                        {{ form.tickets_url }}
+                        <label for="{{ form.tickets_url.id }}">{{ form.tickets_url.label }}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Photo</span>
+                            <input type="file" name="photo" required>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,11 +86,15 @@
         $('.datepicker').pickadate({
             selectMonths: true,
             selectYears: 1,
-            min: new Date(),
+            min: new Date()
+        });
+
+        $('#from_date').change(function() {
+            $('#to_date').pickadate('picker').set('min', new Date(this.value));
         });
 
         $('.timepicker').pickatime({
-            autoclose: true,
+            autoclose: false,
             twelvehour: true,
             default: '12:00:00'
         });

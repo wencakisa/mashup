@@ -9,8 +9,8 @@ class Event(models.Model):
     from_ts = models.DateTimeField()
     to_ts = models.DateTimeField()
     photo = models.ImageField(upload_to='static/event_photos/')
+    tickets_url = models.URLField(blank=True)
     # place = ... (GeoDjango)
-    # category = ... (optional)
 
 
     class Meta:

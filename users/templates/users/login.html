@@ -3,28 +3,32 @@
 {% block content %}
     <h2>Login now</h2>
     <div class="row">
-        <form action="{% url 'users:login' %}" method="post" class="col s6">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">info_outline</i>
-                    {{ form.username }}
-                    <label for="{{ form.username.id }}">{{ form.username.label }}</label>
+        {% if next %}
+            <form action="{% url 'users:login' %}?next={{ next }}" method="post" class="col s6">
+        {% else %}
+            <form action="{% url 'users:login' %}" method="post" class="col s6">
+        {% endif %}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form.username }}
+                        <label for="{{ form.username.id }}">{{ form.username.label }}</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">lock_outline</i>
-                    {{ form.password }}
-                    <label for="{{ form.password.id }}">{{ form.password.label }}</label>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">lock_outline</i>
+                        {{ form.password }}
+                        <label for="{{ form.password.id }}">{{ form.password.label }}</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <input type="submit" value="Log in" class="btn-large">
-            </div>
-            
-            {% csrf_token %}
-        </form>
+                <div class="row">
+                    <input type="submit" value="Log in" class="btn-large">
+                </div>
+                
+                {% csrf_token %}
+            </form>
     </div>
 {% endblock %}

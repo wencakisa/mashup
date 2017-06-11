@@ -1,5 +1,51 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{{ event.title }}</h1>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="/{{ event.photo.url }}" style="height: 640px;">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <span class="card-title"><strong>{{ event.title }}</strong></span>
+                        {% if event.host == request.user %}
+                            <div class="right-align">
+                                <form action="{% url 'events:event-delete' event.id %}" method="post">
+                                    <a href="{% url 'events:event-edit' event.id %}" class="btn"><i class="material-icons prefix">mode_edit</i></a>
+                                    {% csrf_token %}
+                                    <input type="submit" value="Delete" class="btn">
+                                </form>
+                            </div>
+                        {% endif %}
+                        <p><i>{{ event.from_ts }} - {{ event.to_ts }}</i> at <strong>location</strong></p>
+                        <p class="grey-text">
+                            Hosted by 
+                            {% if event.host == request.user %}
+                                you
+                            {% else %}
+                                <a href="{% url 'users:profile' event.host.id %}">{{ event.host }}</a>
+                            {% endif %}
+                        </p>
+                        <br/>
+                        {% if event.description %}
+                            <div style="overflow-y: scroll; max-height: 50%;">
+                                <p>{{ event.description|linebreaksbr }}</p>
+                            </div>
+                        {% else %}
+                            <p>No desription provided for this event.</p>
+                        {% endif %}
+                    </div>
+                    <div class="card-action">
+                        {% if event.tickets_url %}
+                            <a href="{{ event.tickets_url }}" target="_blank">Buy tickets</a>
+                        {% else %}
+                            <a class="disabled">No tickets provided</a>
+                        {% endif %}
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
 {% endblock %}

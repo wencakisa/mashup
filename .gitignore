@@ -4,7 +4,7 @@ TODO
 # Django default DB file
 *.sqlite3
 
-# Bower components
+# Static files
 static/
 
 # Visual Studio Code settings file

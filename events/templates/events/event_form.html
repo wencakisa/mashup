@@ -63,6 +63,7 @@
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>Photo</span>
+                            <i class="material-icons">system_update_alt</i>
                             <input type="file" name="photo" required>
                         </div>
                         <div class="file-path-wrapper">
@@ -79,24 +80,4 @@
             {% csrf_token %}
         </form>
     </div>
-{% endblock %}
-
-{% block javascript %}
-    <script>
-        $('.datepicker').pickadate({
-            selectMonths: true,
-            selectYears: 1,
-            min: new Date()
-        });
-
-        $('#from_date').change(function() {
-            $('#to_date').pickadate('picker').set('min', new Date(this.value));
-        });
-
-        $('.timepicker').pickatime({
-            autoclose: false,
-            twelvehour: true,
-            default: '12:00:00'
-        });
-    </script>
 {% endblock %}

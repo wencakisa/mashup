@@ -15,6 +15,10 @@ class LoginRequired(LoginRequiredMixin):
     redirect_field_name = 'next'
 
 
+class IsEventHost(PermissionRequiredMixin):
+    permission_required = 'event.is_host'
+
+
 class EventList(LoginRequired, ListView):
     model = Event
 
@@ -57,13 +61,12 @@ class EventCreate(LoginRequired, FormView):
         return redirect(reverse('events:event-detail', kwargs={'pk': event.id}))
 
 
-class EventUpdate(UpdateView):
+class EventUpdate(LoginRequired, IsEventHost, UpdateView):
     model = Event
     fields = ['title', 'description', 'from_ts', 'to_ts', 'tickets_url', 'photo']
     template_name_suffix = '_update_form'
 
 
-class EventDelete(LoginRequired, PermissionRequiredMixin, DeleteView):
+class EventDelete(LoginRequired, IsEventHost, DeleteView):
     model = Event
     success_url = reverse_lazy('events:event-list')
-    permission_required = 'events.is_host'

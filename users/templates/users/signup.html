@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Register now</h2>
     <div class="row">
-        <form action="{% url 'users:signup' %}" method="post" class="col s6">
+        <form action="{% url 'users:signup' %}" method="post" class="col s6 offset-s3 center-align">
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">info_outline</i>

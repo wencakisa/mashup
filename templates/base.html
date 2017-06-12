@@ -9,12 +9,25 @@
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="{% static '/bower_components/Materialize/dist/css/materialize.min.css' %}">
         <link rel="stylesheet" href="{% static '/bower_components/materialize-clockpicker/dist/css/materialize.clockpicker.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
     <body>
         <nav>
             <div class="nav-wrapper">
             <a href="/#" class="brand-logo">Mashup</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'website:about' %}">About us</a></li>
+                    <li><a href="{% url 'events:event-list' %}">Events</a>></li>
+                    <li><a href="{% url 'users:profile' request.user.id %}">{{ request.user.username }}</a></li>
+                    <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'users:login' %}">Login</a></li>
+                    <li><a href="{% url 'users:signup' %}">Register now</a></li>
+                {% endif %}
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'website:about' %}">About us</a></li>
                     <li><a href="{% url 'events:event-list' %}">Events</a>></li>
@@ -45,9 +58,12 @@
         <script type="text/javascript" src="{% static '/bower_components/jquery/dist/jquery.min.js' %}"></script>
         <script type="text/javascript" src="{% static '/bower_components/Materialize/dist/js/materialize.min.js' %}"></script>
         <script type="text/javascript" src="{% static '/bower_components/materialize-clockpicker/dist/js/materialize.clockpicker.js' %}"></script>
+        
+        <script src="{% static 'js/events.js' %}"></script>
+        <script>$(".button-collapse").sideNav();</script>
 
         {% block javascript %}
-
+    
         {% endblock %}
     </body>
 </html>

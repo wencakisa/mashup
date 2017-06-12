@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Login now</h2>
     <div class="row">
         {% if next %}
-            <form action="{% url 'users:login' %}?next={{ next }}" method="post" class="col s6">
+            <form action="{% url 'users:login' %}?next={{ next }}" method="post" class="col s6 offset-s3 center-align">
         {% else %}
-            <form action="{% url 'users:login' %}" method="post" class="col s6">
+            <form action="{% url 'users:login' %}" method="post" class="col s6 center-align">
         {% endif %}
                 <div class="row">
                     <div class="input-field col s12">

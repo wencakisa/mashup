@@ -1,0 +1,12 @@
+#eventListPhoto {
+    height: 450px;
+}
+
+#eventDetailPhoto {
+    height: 640px;
+}
+
+#eventDetailDescription {
+    overflow-y: auto;
+    max-height: 420px;
+}

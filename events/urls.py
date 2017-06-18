@@ -1,6 +1,8 @@
 from django.conf.urls import url
 
-from .views import EventList, EventDetail, EventCreate, EventUpdate, EventDelete
+from .views import (
+    EventList, EventDetail, EventCreate, EventUpdate, EventDelete, EventGoing, EventNotGoing
+)
 
 
 urlpatterns = [
@@ -9,4 +11,6 @@ urlpatterns = [
     url(r'^add/$', EventCreate.as_view(), name='event-create'),
     url(r'^edit/(?P<pk>\d+)/$', EventUpdate.as_view(), name='event-edit'),
     url(r'^delete/(?P<pk>\d+)/$', EventDelete.as_view(), name='event-delete'),
+    url(r'^(?P<pk>\d+)/going/$', EventGoing.as_view(), name='event-going'),
+    url(r'^(?P<pk>\d+)/notGoing/$', EventNotGoing.as_view(), name='event-not-going'),
 ]

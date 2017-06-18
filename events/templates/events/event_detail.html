@@ -7,52 +7,80 @@
                 <div class="card">
                     <div class="card-image">
                         <img src="/{{ event.photo.url }}" id="eventDetailPhoto">
-                        <span class="card-title"><strong>{{ event.title }}</strong></span>
+                        <span class="card-title">
+                            <strong>{{ event.title }}</strong>
+                        </span>
                     </div>
                 </div>
             </div>
             <div class="col s12 m12 l6">
                 <div class="card">
                     <div class="card-content">
+                        <div class="left-align">
                             {% if event.host == request.user %}
-                                <div class="right-align">
-                                    <form action="{% url 'events:event-delete' event.id %}" method="post">
-                                        <a href="{% url 'events:event-edit' event.id %}" class="btn">
-                                            <i class="material-icons prefix">mode_edit</i>
-                                        </a>
+                                <form action="{% url 'events:event-delete' event.id %}" method="post">
+                                    <a href="{% url 'events:event-edit' event.id %}" class="btn">
+                                        <i class="material-icons prefix">mode_edit</i>
+                                    </a>
+                                    {% csrf_token %}
+                                    <input type="submit" value="Delete" class="btn" id="eventDeleteBtn">
+                                </form>
+                            {% else %}
+                                {% if request.user not in event.people_going.all %}
+                                    <form action="{% url 'events:event-going' event.id %}" method="post">
                                         {% csrf_token %}
-                                        <input type="submit" value="Delete" class="btn" id="eventDeleteBtn">
+                                        <input type="submit" value="I am going" class="btn">
                                     </form>
-                                </div>
-                            {% endif %}
-                            <p><i>{{ event.from_ts }} - {{ event.to_ts }}</i> at <strong>location</strong></p>
-                            <p class="grey-text">
-                                Hosted by 
-                                {% if event.host == request.user %}
-                                    you
                                 {% else %}
-                                    <a href="{% url 'users:profile' event.host.id %}">{{ event.host }}</a>
+                                    <form action="{% url 'events:event-not-going' event.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="submit" value="I am not going" class="btn">
+                                    </form>
                                 {% endif %}
-                            </p>
-                            <br/>
-                            {% if event.description %}
-                                <div id="eventDetailDescription" class="grey lighten-5">
-                                    <p>{{ event.description|linebreaksbr }}</p>
-                                </div>
-                            {% else %}
-                                <p>No desription provided for this event.</p>
                             {% endif %}
                         </div>
-                        <div class="card-action">
-                            {% if event.tickets_url %}
-                                <a href="{{ event.tickets_url }}" target="_blank">Buy tickets</a>
-                            {% else %}
-                                <a class="disabled">No tickets provided</a>
-                            {% endif %}
+
+                        <div class="right-align" id="peopleGoing">
+                            <strong>
+                                {{ event.people_going.count }}
+                                {% if event.people_going.count == 1 %}
+                                    person is going
+                                {% else %}
+                                    people are going
+                                {% endif %}
+                            </strong>
                         </div>
+
+                        <p><i>{{ event.from_ts }} - {{ event.to_ts }}</i></p>
+
+                        <p class="grey-text">
+                            Hosted by 
+                            {% if event.host == request.user %}
+                                you
+                            {% else %}
+                                <a href="{% url 'users:profile' event.host.id %}">{{ event.host }}</a>
+                            {% endif %}
+                        </p>
+
+                        <br/>
+
+                        {% if event.description %}
+                            <div id="eventDetailDescription" class="grey lighten-5">
+                                <p>{{ event.description|linebreaksbr }}</p>
+                            </div>
+                        {% else %}
+                            <p>No desription provided for this event.</p>
+                        {% endif %}
                     </div>
-                </div>    
-            </div>
+                    <div class="card-action">
+                        {% if event.tickets_url %}
+                            <a href="{{ event.tickets_url }}" target="_blank">Buy tickets</a>
+                        {% else %}
+                            <a class="disabled">No tickets provided</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>    
         </div>
     </div>
 {% endblock %}

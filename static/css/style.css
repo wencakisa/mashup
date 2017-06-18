@@ -8,5 +8,9 @@
 
 #eventDetailDescription {
     overflow-y: auto;
-    max-height: 420px;
+    max-height: 390px;
+}
+
+#peopleGoing {
+    font-size: 20px;
 }

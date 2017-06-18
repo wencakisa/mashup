@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from django.views.generic.edit import FormView
-from django.shortcuts import redirect, reverse
+from django.shortcuts import redirect, reverse, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 
@@ -30,6 +30,7 @@ class EventDetail(LoginRequired, DetailView):
 class EventCreate(LoginRequired, FormView):
     template_name = 'events/event_form.html'
     form_class = EventForm
+
 
     def get_datetime(self, date, time):
         datetime_format = '%d %B, %Y %I:%M%p'
@@ -63,10 +64,35 @@ class EventCreate(LoginRequired, FormView):
 
 class EventUpdate(LoginRequired, IsEventHost, UpdateView):
     model = Event
-    fields = ['title', 'description', 'from_ts', 'to_ts', 'tickets_url', 'photo']
+    fields = ['title', 'description', 'tickets_url', 'photo']
     template_name_suffix = '_update_form'
 
 
 class EventDelete(LoginRequired, IsEventHost, DeleteView):
     model = Event
     success_url = reverse_lazy('events:event-list')
+
+
+class EventGoingAbstract(LoginRequired, UpdateView):
+    model = Event
+    fields = ['people_going']
+
+    def do_action(self, request, event):
+        raise NotImplementedError()
+
+    def post(self, request, *args, **kwargs):
+        event = get_object_or_404(Event, pk=kwargs['pk'])
+        self.do_action(request, event)
+        event.save()
+
+        return redirect(reverse('events:event-detail', kwargs={'pk': kwargs['pk']}))
+
+
+class EventGoing(EventGoingAbstract):
+    def do_action(self, request, event):
+        event.people_going.add(request.user)
+
+
+class EventNotGoing(EventGoingAbstract):
+    def do_action(self, request, event):
+        event.people_going.remove(request.user)

@@ -1,0 +1,24 @@
+<table class="highlight responsive-table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>From</th>
+            <th>To</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+            <tr>
+                <td>
+                    <a href="{% url 'events:event-detail' event.id %}">{{ event.title }}</a>
+                </td>
+                <td>
+                    {{ event.from_ts.date }}
+                </td>
+                <td>
+                    {{ event.to_ts.date }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

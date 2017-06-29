@@ -4,7 +4,7 @@ from django.shortcuts import reverse
 
 
 class Event(models.Model):
-    title = models.CharField(unique=True, max_length=50)
+    title = models.CharField(blank=False, unique=True, max_length=50)
     host = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(max_length=100000, blank=True)
     from_ts = models.DateTimeField()

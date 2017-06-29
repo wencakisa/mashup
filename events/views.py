@@ -22,10 +22,9 @@ class EventCreate(LoginRequired, FormView):
     template_name = 'events/event_form.html'
     form_class = EventForm
 
-
     def get_datetime(self, date, time):
         datetime_format = '%d %B, %Y %I:%M%p'
-        datetime_str = '{} {}'.format(date, time)
+        datetime_str = '{}, {}'.format(date, time)
 
         return datetime.strptime(datetime_str, datetime_format)
 

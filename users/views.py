@@ -30,6 +30,8 @@ class SignUpView(FormView):
 
             return redirect('/')
 
+        return render(request, self.template_name, {'form': form})
+
 
 class ProfileView(DetailView):
     model = User

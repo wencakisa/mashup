@@ -3,20 +3,11 @@ from datetime import datetime
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from django.views.generic.edit import FormView
 from django.shortcuts import redirect, reverse, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 
 from .models import Event
 from .forms import EventForm
-
-
-class LoginRequired(LoginRequiredMixin):
-    login_url = '/login'
-    redirect_field_name = 'next'
-
-
-class IsEventHost(PermissionRequiredMixin):
-    permission_required = 'event.is_host'
+from .permissions import LoginRequired, IsEventHost
 
 
 class EventList(LoginRequired, ListView):

@@ -10,7 +10,7 @@ class SignUpViewTestCase(TestCase):
         self.url_name = '{}:{}'.format(self.app_name, self.view_name)
         self.url = reverse(self.url_name)
 
-        self.template_name = 'users/signup.html'
+        self.template_name = '{}/signup.html'.format(self.app_name)
 
         self.user = User.objects.create_user(username='user', password='123456')
         self.user_creation_dict = {
@@ -67,7 +67,7 @@ class LoginViewTestCase(TestCase):
         self.url_name = '{}:{}'.format(self.app_name, self.view_name)
         self.url = reverse(self.url_name)
 
-        self.template_name = 'users/login.html'
+        self.template_name = '{}/login.html'.format(self.app_name)
 
         self.user = User.objects.create_user(
             username='test',

@@ -1,8 +1,8 @@
 # Django default DB file
 *.sqlite3
 
-# Useless static files
-static/bower_components
+# Bower dependencies
+bower_components/
 
 # Visual Studio Code files
 .vscode

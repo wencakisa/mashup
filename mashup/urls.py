@@ -24,4 +24,4 @@ urlpatterns = [
     url(r'', include('website.urls', namespace='website', app_name='website')),
     url(r'', include('users.urls', namespace='users', app_name='users')),
     url(r'^events/', include('events.urls', namespace='events', app_name='events'))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.SETTINGS_URL, document_root=settings.SETTINGS_ROOT)

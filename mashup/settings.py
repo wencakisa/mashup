@@ -25,7 +25,7 @@ SECRET_KEY = 'c+f4d^-xj&*6)ir4yqz5ti-v_%d*3=z8f@!m12!it)v==f2vrv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mashup-platform.herokuapp.com']
 
 
 # Application definition

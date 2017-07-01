@@ -24,29 +24,21 @@ class EventCreate(LoginRequired, FormView):
 
     def get_datetime(self, date, time):
         datetime_format = '%d %B, %Y %I:%M%p'
-        datetime_str = '{}, {}'.format(date, time)
+        datetime_str = '{} {}'.format(date, time)
 
         return datetime.strptime(datetime_str, datetime_format)
 
     def post(self, request, *args, **kwargs):
         data = request.POST
 
-        title = data.get('title')
-        host = request.user
-        description = data.get('description', '')
-        from_ts = self.get_datetime(data.get('from_date'), data.get('from_time'))
-        to_ts = self.get_datetime(data.get('to_date'), data.get('to_time'))
-        photo = request.FILES['photo']
-        tickets_url = data.get('tickets_url', '')
-
         event = Event.objects.create(
-            title=title,
-            host=host,
-            description=description,
-            from_ts=from_ts,
-            to_ts=to_ts,
-            photo=photo,
-            tickets_url=tickets_url
+            title=data.get('title'),
+            host=request.user,
+            description=data.get('description', ''),
+            from_ts=self.get_datetime(data.get('from_date'), data.get('from_time')),
+            to_ts=self.get_datetime(data.get('to_date'), data.get('to_time')),
+            photo=request.FILES.get('photo'),
+            tickets_url=data.get('tickets_url', '')
         )
 
         return redirect(reverse('events:event-detail', kwargs={'pk': event.id}))

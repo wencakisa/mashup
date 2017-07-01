@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
+from cloudinary.models import CloudinaryField
 
 
 class Event(models.Model):
@@ -10,7 +11,7 @@ class Event(models.Model):
     from_ts = models.DateTimeField()
     to_ts = models.DateTimeField()
     tickets_url = models.URLField(blank=True)
-    photo = models.ImageField(upload_to='static/event_photos/')
+    photo = CloudinaryField('photo')
     people_going = models.ManyToManyField(User, related_name='going')
 
 

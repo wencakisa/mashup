@@ -3,8 +3,6 @@ from datetime import datetime
 from django.test import TestCase
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.db.utils import IntegrityError
 
 from .models import Event
 
@@ -20,12 +18,7 @@ class EventDefaultTestCase(TestCase):
             title='myevent',
             host=self.user,
             from_ts=now,
-            to_ts=now,
-            photo=SimpleUploadedFile(
-                name='mashup_logo.jpg',
-                content=open('static/images/mashup_logo.jpg', 'rb').read(),
-                content_type='image/jpeg'
-            )
+            to_ts=now
         )
 
     def get_full_url(self, view_name, *args, **kwargs):
@@ -111,19 +104,16 @@ class EventCreateViewTestCase(EventDefaultTestCase):
 
         self.redirect_url = '/login/?next=%2Fevents%2Fadd%2F'
 
-        self.date_format = '%d %B'
-        self.time_format = '%Y %I:%M%p'
         now = datetime.now()
-        now_date = now.date().strftime(self.date_format)
-        now_time = now.time().strftime(self.time_format)
+        now_date = now.date().strftime('%d %B, ')
+        now_time = now.time().strftime('%Y %I:%M%p')
 
         self.event_creation_dict = {
             'title': 'test',
             'from_date': now_date,
             'from_time': now_time,
             'to_date': now_date,
-            'to_time': now_time,
-            'photo': self.event.photo
+            'to_time': now_time
         }
 
     def test_event_creation_template_with_non_authenticated_user(self):

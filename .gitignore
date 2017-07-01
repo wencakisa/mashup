@@ -1,12 +1,8 @@
-# TODO file
-TODO
-
 # Django default DB file
 *.sqlite3
 
 # Useless static files
 static/bower_components
-static/event_photos
 
 # Visual Studio Code files
 .vscode

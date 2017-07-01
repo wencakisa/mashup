@@ -1,4 +1,5 @@
 astroid==1.5.3
+cloudinary==1.8.0
 Django==1.11.2
 django-cleanup==0.4.2
 django-location-field==2.0.3
@@ -12,4 +13,5 @@ pylint-django==0.7.2
 pylint-plugin-utils==0.2.6
 pytz==2017.2
 six==1.10.0
+urllib3==1.21.1
 wrapt==1.10.10

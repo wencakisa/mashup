@@ -44,13 +44,13 @@ class EventCreate(LoginRequired, FormView):
         return redirect(reverse('events:event-detail', kwargs={'pk': event.id}))
 
 
-class EventUpdate(LoginRequired, IsEventHost, UpdateView):
+class EventUpdate(IsEventHost, LoginRequired, UpdateView):
     model = Event
     fields = ['title', 'description', 'tickets_url', 'photo']
     template_name_suffix = '_update_form'
 
 
-class EventDelete(LoginRequired, IsEventHost, DeleteView):
+class EventDelete(IsEventHost, LoginRequired, DeleteView):
     model = Event
     success_url = reverse_lazy('events:event-list')
 

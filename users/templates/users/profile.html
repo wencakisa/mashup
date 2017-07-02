@@ -6,22 +6,24 @@
             <div class="card large">
                 <span class="card-title">{{ user.first_name }} {{ user.last_name}} ({{ user.username }})</span>
                 <div class="card-content">
-                    {% if user.hosted_events %}
-                        <h5>Events hosted by you</h5>
+                    {% if request.user == user %}
+                        {% if user.hosted_events %}
+                            <h5>Events hosted by you</h5>
+                            
+                            {% include 'users/events_table.html' with events=user.hosted_events %}
+                        {% else %}
+                            <h5>You do not host any events yet.</h5>
+                        {% endif %}
                         
-                        {% include 'users/events_table.html' with events=user.hosted_events %}
-                    {% else %}
-                        <h5>You do not host any events yet.</h5>
-                    {% endif %}
-                    
-                    <br/>
+                        <br/>
 
-                    {% if user.events_going %}
-                        <h5>You are going on</h5>
+                        {% if user.events_going %}
+                            <h5>You are going on</h5>
 
-                        {% include 'users/events_table.html' with events=user.events_going %}
-                    {% else %}
-                        <h5>You are not going on any events yet.</h5>
+                            {% include 'users/events_table.html' with events=user.events_going %}
+                        {% else %}
+                            <h5>You are not going on any events yet.</h5>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

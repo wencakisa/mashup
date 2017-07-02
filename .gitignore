@@ -1,3 +1,6 @@
+# Static files
+staticfiles/
+
 # Django default DB file
 *.sqlite3
 

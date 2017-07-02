@@ -1,6 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import DetailView
 from django.views.generic.edit import FormView
 
@@ -38,7 +38,7 @@ class ProfileView(DetailView):
     template_name = 'users/profile.html'
 
     def get(self, request, *args, **kwargs):
-        user = request.user
+        user = get_object_or_404(User, id=kwargs['pk'])
 
         user.hosted_events = Event.objects.filter(host=user)
         user.events_going = Event.objects.filter(people_going__in=[user])

@@ -133,6 +133,7 @@ class ProfileViewTestCase(TestCase):
         self.app_name = 'users'
         self.view_name = 'profile'
         self.url_name = '{}:{}'.format(self.app_name, self.view_name)
+        self.template_name = '{}/{}.html'.format(self.app_name, self.view_name)
 
         self.user = User.objects.create_user(
             username='test',
@@ -142,7 +143,18 @@ class ProfileViewTestCase(TestCase):
         )
 
     def test_profile_with_invalid_user_id(self):
-        pass
+        self.client.force_login(self.user)
+
+        response = self.client.get(reverse('users:profile', kwargs={'pk': self.user.id + 1}))
+
+        self.assertEqual(response.status_code, 404)
+        self.assertTemplateNotUsed(self.template_name)
 
     def test_profile_with_valid_user_id(self):
-        pass
+        self.client.force_login(self.user)
+
+        response = self.client.get(reverse('users:profile', kwargs={'pk': self.user.id}))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(self.template_name)
+        self.assertEqual(response.context['user'].username, self.user.username)

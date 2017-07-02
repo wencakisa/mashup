@@ -9,8 +9,8 @@ urlpatterns = [
     url(r'^$', EventList.as_view(), name='event-list'),
     url(r'^(?P<pk>\d+)/$', EventDetail.as_view(), name='event-detail'),
     url(r'^add/$', EventCreate.as_view(), name='event-create'),
-    url(r'^edit/(?P<pk>\d+)/$', EventUpdate.as_view(), name='event-edit'),
-    url(r'^delete/(?P<pk>\d+)/$', EventDelete.as_view(), name='event-delete'),
+    url(r'^(?P<pk>\d+)/edit/$', EventUpdate.as_view(), name='event-edit'),
+    url(r'^(?P<pk>\d+)/delete/$', EventDelete.as_view(), name='event-delete'),
     url(r'^(?P<pk>\d+)/going/$', EventGoing.as_view(), name='event-going'),
     url(r'^(?P<pk>\d+)/notGoing/$', EventNotGoing.as_view(), name='event-not-going'),
 ]

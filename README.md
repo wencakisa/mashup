@@ -1,8 +1,12 @@
+[![forthebadge](http://forthebadge.com/images/badges/made-with-python.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/ages-18.svg)](http://forthebadge.com)
+[![Heroku](https://heroku-badge.herokuapp.com/?app=mashup-platform&style=flat)](http://mashup-platform.herokuapp.com/)
+
 ![Logo](https://raw.githubusercontent.com/wencakisa/mashup/master/static/images/mashup_logo.jpg)
 
 # mashup
 
-**mashup** is a social network for events. You can plan upcoming events easily with this platform.
+**mashup** is a social network for events. You can plan upcoming events easier than ever.
 
 
 ## Tech

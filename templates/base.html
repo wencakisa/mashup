@@ -7,8 +7,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Mashup</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.min.css">
-        <link rel="stylesheet" href="bower_components/materialize-clockpicker/dist/css/materialize.clockpicker.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+        <link rel="stylesheet" href="{% static 'css/materialize.clockpicker.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
     <body>
@@ -55,15 +55,17 @@
             </footer>
         {% endif %}
 
-        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="bower_components/Materialize/dist/js/materialize.min.js"></script>
-        <script type="text/javascript" src="bower_components/materialize-clockpicker/dist/js/materialize.clockpicker.js"></script>
-        
-        <script src="{% static 'js/events.js' %}"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous">
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/materialize.clockpicker.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/events.js' %}"></script>
         <script>$(".button-collapse").sideNav();</script>
 
         {% block javascript %}
-    
+        
         {% endblock %}
     </body>
 </html>
